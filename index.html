@@ -345728,16 +345728,29 @@
 				
 				$("#wordCloud li span").click(onTermSelected);
 				
+				var stickyRibbonTop = $('#stickyribbon').offset().top;
+          
+				$(window).scroll(function(){
+						if( $(window).scrollTop() > stickyRibbonTop ) {
+								$('#stickyribbon').css({position: 'fixed', top: '0px'});
+						} else {
+								$('#stickyribbon').css({position: 'static', top: '0px'});
+						}
+				});
+
+				
 			});
 
 
 			
 			function onTermSelected()
 			{
-				//var $term = $('#termList').val();
+				
 				var $term = this.id;
 				var $yeas = data[$term].yea;
 				var $nays = data[$term].nay;
+				
+				$("#selectedTerm").text($term);
 				
 				$yeaList.find('li').remove();  
 				
@@ -345755,7 +345768,6 @@
 				
 				$yeaList.parent().show();
 				$nayList.parent().show();
-				window.scrollTo(0, 0);
 			}
 		</script>
 		
@@ -345778,7 +345790,11 @@
 			
 			#yeas { background-color: #74C365; }
 			#nays { background-color: #FFC0CB; }
-			
+			#stickyribbon
+			{
+				width:100%;
+				background-color:#FFFFFF;
+			}
 			.cloud { 
 				list-style: none;
 				cursor: pointer;
@@ -345787,19 +345803,20 @@
 		</style>
 	</head>
 	<body>
-		<br/><br/>
-		<div id="yeas">
-			<h1>Yeas</h1>
-			<ul class="voters">
-			</ul>
-		</div>
+		<div id="stickyribbon">
+			<h1 id="selectedTerm"></h1>
+			<div id="yeas">
+				<h1>Yeas</h1>
+				<ul class="voters">
+				</ul>
+			</div>
 		
-		<div id="nays">
-			<h1>Nays</h1>
-			<ul class="voters">
-			</ul>
-		</div>
-		
+			<div id="nays">
+				<h1>Nays</h1>
+				<ul class="voters">
+				</ul>
+			</div>
+		</div>		
 		<div id="wordCloud">
 			<ul class="cloud">
 			</ul>
