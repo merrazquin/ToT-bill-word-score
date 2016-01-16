@@ -345756,14 +345756,14 @@
 				
 				$.each($yeas, function(key, value) 
 				{
-					$yeaList.append('<li>' + value[0] + ' (' + value[1] + ')</li>');
+					$yeaList.append('<li>' + value[0] + ' (' + value[1].toFixed(2) + ')</li>');
 				});
 				
 				$nayList.find('li').remove();
 				
 				$.each($nays, function(key, value)
 				{
-					$nayList.append('<li>' + value[0] + ' (' + value[1] + ')</li>');
+					$nayList.append('<li>' + value[0] + ' (' + value[1].toFixed(2) + ')</li>');
 				});
 				
 				$yeaList.parent().show();
